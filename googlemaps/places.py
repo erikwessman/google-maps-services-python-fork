@@ -207,6 +207,7 @@ def places(
     type=None,
     region=None,
     page_token=None,
+    number_requests=None,
 ):
     """
     Places search.
@@ -269,6 +270,7 @@ def places(
         type=type,
         region=region,
         page_token=page_token,
+        number_requests=number_requests
     )
 
 
@@ -390,6 +392,7 @@ def _places(
     type=None,
     region=None,
     page_token=None,
+    number_requests=None,
 ):
     """
     Internal handler for ``places`` and ``places_nearby``.
@@ -420,6 +423,8 @@ def _places(
         params["region"] = region
     if page_token:
         params["pagetoken"] = page_token
+    if number_requests:
+        params["number_requests"] = number_requests
 
     url = "/maps/api/place/%ssearch/json" % url_part
     return client._request(url, params)
